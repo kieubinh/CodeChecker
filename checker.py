@@ -11,6 +11,7 @@ check_function=["B"]
 def searchCheckFile(parrent_dir):
     import glob
     import os
+    check_paths={}
     for check_file in check_files:
         student_map = {}
         for student_dir in os.listdir(parrent_dir):
@@ -37,11 +38,19 @@ def searchCheckFile(parrent_dir):
     print (len(check_paths["search.py"]))
     return check_paths
 
-def importTextFromPath(check_paths):
+def getTextFromFunctionCode(path_name):
     #get text from function name + path
-    return {}
+    return "abc"
 
 if __name__ == '__main__':
+    import util
     check_paths = searchCheckFile(dir_name)
-    check_codes = importTextFromPath(check_paths)
+    student_dirs = check_paths["search.py"]
+    print (student_dirs)
+    for (student_dir, student_path) in student_dirs.items():
+        print(student_dir, student_path)
+        text1 = getTextFromFunctionCode(student_path)
+        for (student_dir2, student_path2) in student_dirs.items():
+            text2 = getTextFromFunctionCode(student_path2)
+            print(util.cosine_sim(text1, text2))
     #checkPairCodes(codes)
